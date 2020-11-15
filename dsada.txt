@@ -1,0 +1,7 @@
+
+
+clasa curs - nr ore, titular si grupa si sa citeasca datele a n cursuri si sa se afiseze
+clasa fractie - citire, afisare si adunare a 2 fractii
+clasa curs(vezi pb 1) si clasa Student(id, nume). Sa se citeasca o clasa cu n studenti si sa se afiseze studentii ordonati alfabetic
+
+ATENTIE: DATELE MEMBRE NU TREBUIE SA FIE PUBLICE( SE PICA EXAMENUL). FUNCTIILE MEMBRE DA

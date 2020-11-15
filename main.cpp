@@ -34,7 +34,13 @@ class Arma {
             // constructor default
             Arma() {
                 cout << "Default constructor called" << endl;
-                numeSkin = "Safari Mesh";
+                numeArma = "";
+                numeSkin = "";
+                stareArma = "";
+                categorieArma = "";
+                munitieArma = 0;
+                damageArma = 0;
+                pretArma = 0;
             }
 
 
@@ -93,7 +99,7 @@ class Arma {
             }
 
 
-            void displayArma() {
+            void afisareArma() {
                 cout << "Proprietati Arma" << endl;
                 cout << "Nume Arma: " << numeArma << endl;
                 cout << "Nume Skin: " << numeSkin << endl;
@@ -104,23 +110,119 @@ class Arma {
                 cout << "Pret Arma: " << pretArma << endl;
             }
 
+            void gloanteRamase(int munitie_Arma, int gloanteTrase) {
+                munitie_Arma = munitie_Arma - gloanteTrase;
+                cout << "Gloante ramase: " << munitie_Arma << endl; 
+            }
+};
+
+class Cutit  {
+    private:
+        // damage-ul cutitului
+        int damage;
+
+        // nume cutit
+        string numeCutit;
+
+        // damage-ul difera daca apas click stanga sau click dreapta cand injunghii pe cineva
+        string clickCutit;
+
+        // exista 2 tipuri de cutite basic, unul pentru tero si unul pentru counter tero
+        string echipaCutit;
+
+        // exista diferite skinuri pentru cutite
+        string numeSkin;
+
+        // directia loviturii: cap, piept&brat, stomac, picior, spate
+        string directiaLoviturii;
+
+        // starea cutitului
+        string stareCutit;
+
+    public: 
+        // constructor default
+        Cutit() {
+            cout<<"Default constructor called" << endl;
+            numeCutit = "";
+            numeSkin = "";
+            stareCutit = "";
+            directiaLoviturii = "";
+            echipaCutit = "";
+            clickCutit = "";
+            damage = 0;
+        } 
+
+        // constructor parametrizat
+        Cutit(string nume_Cutit, string nume_Skin, string stare_Cutit, string echipa_Cutit, string click_Cutit) {
+            cout << "Parameterized constructor called" << endl;
+            numeCutit = nume_Cutit;
+            numeSkin = nume_Skin;
+            stareCutit = stare_Cutit;
+            clickCutit = click_Cutit;
+            echipaCutit = echipa_Cutit;
+        }
+
+        Cutit(Cutit &obj) {
+            cout << "Copy constructor called" << endl;
+            numeCutit = obj.numeCutit;
+            numeSkin = obj.numeSkin;
+            stareCutit = obj.stareCutit;
+            clickCutit = obj.clickCutit;
+            echipaCutit = obj.echipaCutit;
+        }
+
+        ~Cutit() {
+            cout << "Destructor called" << endl;
+        }
+
+
+        //FUNCTII
+        int damageRealizat(string directiaLoviturii, string clickCutit) {
+            float totalDamage = 0;
+
+            if(directiaLoviturii == "headshot") {
+                if (clickCutit == "dreapta") totalDamage = 250;
+                else totalDamage = 50;
+            }
+
+            else if ((directiaLoviturii == "chest&arm") || (directiaLoviturii == "stomach") || (directiaLoviturii == "legs")){
+                if(clickCutit == "dreapta") totalDamage = 55;
+                else totalDamage = 12;
+            }
+
+            cout << "Damage total cutit: " << totalDamage << endl;
+        }
+
+        void afisareCutit() {
+            cout << "Proprietati Cutit" << endl;
+            cout << "Nume Cutit: " << numeCutit << endl;
+            cout << "Nume Skin: " << numeSkin << endl;
+            cout << "Stare Cutit: " << stareCutit << endl;
+        }
+
 };
 
 int main() {
     Arma arma1("AK 47", "Frontside Misty", "Factory New", "Assault Rifles", 30, 27, 2700);
-    arma1.displayArma();
+    arma1.afisareArma();
     arma1.damageRealizat(27, "headshot");
+    arma1.gloanteRamase(30, 17);
     cout << endl;
 
 
     Arma arma2;
     arma2.setareProprietati("MP5-SD", "Phosphor", "Well-Worn", "SMGs", 30, 27, 1500);
-    arma2.displayArma();
+    arma2.afisareArma();
     cout << endl;
 
     // utliziarea constructorului de copiere
     Arma arma3 = arma1;
-    arma3.displayArma();
+    arma3.afisareArma();
     cout << endl;
 
+
+    Cutit cutit1("M9 bayonet", "Lore", "Field-Tested", "dreapta", "ct");
+
+    cutit1.afisareCutit();
+    cutit1.damageRealizat("headshot", "dreapta");
 }
