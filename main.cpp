@@ -225,4 +225,9 @@ int main() {
 
     cutit1.afisareCutit();
     cutit1.damageRealizat("headshot", "dreapta");
+    
+
+    Cutit cutit2("M9 bayonet", "Lore", "Field-Tested", "stanga", "t");
+    cutit2.afisareCutit();
+    cutit2.damageRealizat("stomach", "dreapta");
 }
