@@ -111,9 +111,28 @@ class Arma {
             }
 
             void gloanteRamase(int munitie_Arma, int gloanteTrase) {
-                munitie_Arma = munitie_Arma - gloanteTrase;
-                cout << "Gloante ramase: " << munitie_Arma << endl; 
+                if(munitie_Arma > 1) {
+                    munitie_Arma = munitie_Arma - gloanteTrase;
+                    cout << "Gloante ramase: " << munitie_Arma << endl; 
+                } else cout << "S-au terminat gloantele" << endl;
             }
+
+};
+
+// Folosesc inheritance
+class Burstfire:public Arma {
+    private: 
+        int burstBullets = 3;
+    public: 
+        Burstfire(string numeArma, string numeSkin, string stareArma, string categorieArma, int munitieArma, int damageArma, int pretArma):Arma(numeArma, numeSkin, stareArma, categorieArma, munitieArma, damageArma, pretArma) {
+        }
+
+        int gloanteRamaseBurst(int munitie_Arma) {
+            if(munitie_Arma >= 3) {
+            munitie_Arma = munitie_Arma - burstBullets;
+            cout << "Gloante ramase: " << munitie_Arma << endl;
+            } else cout << "S-au terminat gloantele" << endl;
+        }
 };
 
 class Cutit  {
@@ -203,6 +222,7 @@ class Cutit  {
 };
 
 int main() {
+    cout << endl;
     Arma arma1("AK 47", "Frontside Misty", "Factory New", "Assault Rifles", 30, 27, 2700);
     arma1.afisareArma();
     arma1.damageRealizat(27, "headshot");
@@ -221,13 +241,25 @@ int main() {
     cout << endl;
 
 
+    // sunt 2 arme in CS GO care au burstfire: Famas, respectiv Glock18
+    Burstfire famas("Famas", "Aligator", "Field Tested", "Assault Rifles", 25, 26, 2050);
+    famas.afisareArma();
+    famas.gloanteRamaseBurst(25);
+    cout << endl;
+
+    Burstfire glock18("Glock 18", "Candy Apple", "Battle-Scared", "Pistols", 20, 15, 200);
+    glock18.afisareArma();
+    glock18.gloanteRamaseBurst(2);
+    cout << endl;
+
     Cutit cutit1("M9 bayonet", "Lore", "Field-Tested", "dreapta", "ct");
 
     cutit1.afisareCutit();
     cutit1.damageRealizat("headshot", "dreapta");
-    
+    cout << endl;
 
     Cutit cutit2("M9 bayonet", "Lore", "Field-Tested", "stanga", "t");
     cutit2.afisareCutit();
     cutit2.damageRealizat("stomach", "dreapta");
+    cout << endl;
 }
